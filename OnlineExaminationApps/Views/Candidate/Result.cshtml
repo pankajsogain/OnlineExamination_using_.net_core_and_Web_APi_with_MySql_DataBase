@@ -1,0 +1,43 @@
+﻿@model OnlineExaminationApps.Models.Assignedtest
+@{
+    ViewData["Title"] = "Test Result";
+}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="text-uppercase text-center">Result</h5>
+            </div>
+            <div class="card-body">
+                <table>
+                    <tr>
+                        <td>Test Percentage</td>
+                        <td>@Model.Percentage</td>
+                    </tr>
+                    <tr>
+                        <td>No Of Correct Questions</td>
+                        <td>@Model.NoOfCorrectAnswers</td>
+                    </tr>
+                    <tr>
+                        <td>No Of Wrong Questions</td>
+                        <td>@Model.NoOfWrongAnswers</td>
+                    </tr>
+                    <tr>
+                        <td>Over All Result</td>
+                        <td>
+                            @if(Model.Percentage>33)
+                            {
+                                <b>congratulations you passed the test</b>
+                                <img src="~/Passed.jpg" />
+                            }
+                            else
+                            {
+                                <b>Fail Please Try Again</b>
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>  

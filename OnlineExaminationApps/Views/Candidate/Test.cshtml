@@ -1,0 +1,76 @@
+﻿@model OnlineExaminationApps.Models.VmQuestions
+@{
+    ViewData["Title"] = "Test";
+}
+<form asp-action="Test">
+    <div class="alert alert-success" role="alert">
+        <table>
+            <tr><td>Test Name =</td><td>@Model.SimTest.TestName</td></tr>
+            <tr><td>No Of Ques=</td><td>@Model.SimTest.NoOfQuestions</td></tr>
+        </table>
+    </div>
+
+    @{int i = 1;}
+    @foreach (var item in Model.Questionwithchoices)
+    {
+        <div class="card test-panel">
+            <div class="card-header">
+                <h4>Question#: @i</h4>
+            </div>
+            <div class="card-body">
+                <pre><b>@item.Questions.Question</b></pre>
+
+                <input type="hidden" asp-for="Questionwithchoices[i-1].Questions.IdQuestions" />
+                <input type="hidden" asp-for="Questionwithchoices[i-1].Questions.TestId" />
+                <input type="hidden" asp-for="Questionwithchoices[i-1].Questions.Question" />                
+                <div id="radio" class="col-xs-12">
+                    <br>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                A
+                                <input type="radio" class="ml-1" asp-for="Questionwithchoices[i-1].Questions.CorrectAnswer" value="A">
+                            </div>
+                        </div>
+                        <label class="form-control test-option">@item.Choices.ChoiceOne</label><br>
+                    </div>
+                    <br>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                B
+                                <input type="radio" class="ml-1" asp-for="Questionwithchoices[i-1].Questions.CorrectAnswer" value="B">
+                            </div>
+                        </div>
+                        <label class="form-control test-option ">@item.Choices.ChoiceTwo</label>
+                    </div>
+                    <br>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                C
+                                <input type="radio" class="ml-1" asp-for="Questionwithchoices[i-1].Questions.CorrectAnswer" value="C">
+                            </div>
+                        </div>
+                        <label class="form-control test-option ">@item.Choices.ChoiceThree</label>
+                    </div>
+                    <br>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                D
+                                <input type="radio" class="ml-1" asp-for="Questionwithchoices[i-1].Questions.CorrectAnswer" value="D">
+                            </div>
+                        </div>
+                        <label class="form-control test-option ">@item.Choices.ChoiceFour</label>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            @{ i++; }
+        </div>
+
+    }
+    <br>
+    <input type="submit" value="Submit Test" class="btn btn-sm btn-success text-uppercase rounded-0" />
+</form>

@@ -1,0 +1,30 @@
+﻿@model OnlineExaminationApps.Models.VmQuestions
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">@Model.SimTest.TestName</h4>
+    <table>
+        <tr><td>No Of Questions=</td><td>@Model.SimTest.NoOfQuestions</td></tr>
+        <tr>
+        <td scope="row"><a asp-route-id="@Model.SimTest.SimTestNumber" asp-controller="Admin" asp-action="AddQuestion">Add Questions</a></td>
+            </tr>
+    </table>
+</div>
+<div>
+    @{int i = 1;}
+    @foreach (var item in Model.Questionwithchoices)
+    {
+    <table class="blockquote">
+        <tr><td><b>@i.: @item.Questions.Question</b><hr></td></tr>
+        <tr><td>@item.Choices.ChoiceOne</td></tr>
+        <tr><td>@item.Choices.ChoiceTwo</td></tr>
+        <tr><td>@item.Choices.ChoiceThree</td></tr>
+        <tr><td>@item.Choices.ChoiceFour</td></tr>
+        
+        <tr><td> <br> Answer: @item.Choices.Answer</td></tr>
+        @{i++;}
+    </table>
+    
+    }
+</div>

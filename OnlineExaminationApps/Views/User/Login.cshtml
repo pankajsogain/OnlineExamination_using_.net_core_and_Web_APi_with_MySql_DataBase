@@ -1,0 +1,30 @@
+﻿@model OnlineExaminationApps.Models.User
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header text-white" style="background-color:#817398">
+                <h5 class="text-uppercase text-center">Login Form</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Login">
+                
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input type="password" asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>                
+                    <input type="submit" value="Login" class="btn btn-sm btn-success text-uppercase rounded-0" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

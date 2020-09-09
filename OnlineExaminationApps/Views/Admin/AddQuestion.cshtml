@@ -1,0 +1,56 @@
+﻿@model OnlineExaminationApps.Models.Questionwithchoice
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header text-white" style="background-color:#817398">
+                <h5 class="text-uppercase text-center">Add Question</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="AddQuestion">
+                    <div class="form-group">
+                        <input asp-for="Questions.TestId" hidden />
+                        <label asp-for="Questions.Question"></label>
+                        <input type="text" asp-for="Questions.Question" class="form-control" />
+                        <span asp-validation-for="Questions.Question" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Choices.ChoiceOne"></label>
+                        <input asp-for="Choices.ChoiceOne" class="form-control" />
+                        <span asp-validation-for="Choices.ChoiceOne" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Choices.ChoiceTwo"></label>
+                        <input asp-for="Choices.ChoiceTwo" class="form-control" />
+                        <span asp-validation-for="Choices.ChoiceTwo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Choices.ChoiceThree"></label>
+                        <input asp-for="Choices.ChoiceThree" class="form-control" />
+                        <span asp-validation-for="Choices.ChoiceThree" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Choices.ChoiceFour"></label>
+                        <input asp-for="Choices.ChoiceFour" class="form-control" />
+                        <span asp-validation-for="Choices.ChoiceFour" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Choices.Answer" class="control-label"></label>
+                        <select asp-for="Choices.Answer"  class="form-control">
+                            <option value="0"> --select--</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+
+                        </select>
+                        <span asp-validation-for="Choices.Answer" class="text-danger"></span>
+                    </div>
+                    <input type="submit" value="Add" class="btn btn-sm btn-success text-uppercase rounded-0" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

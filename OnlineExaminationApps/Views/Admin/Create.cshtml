@@ -1,0 +1,119 @@
+﻿@model OnlineExaminationApps.Models.Registration
+@{
+    ViewData["Title"] = "Register";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#ddlcountry").change(function () {
+            $.getJSON("/Admin/GetStatesByCountryId", { countryId: $("#ddlcountry").val() }, function (d) {
+                var row = "";
+                $("#ddlstate").empty();
+                row += "<option value="+0+">--Select--</option>";
+                $.each(d, function (i, v) {
+                    row += "<option value=" + v.id + ">"+v.name+"</option>";
+                });
+                $("#ddlstate").html(row);
+                $('#ddlstate').val(0);
+            })
+        })
+        $("#ddlstate").change(function () {
+            $.getJSON("/Admin/GetCitiesByStateId", { stateId: $("#ddlstate").val() }, function (d) {
+                var row = "";
+                $("#ddlcity").empty();
+                row += "<option value="+0+">--Select--</option>";
+                $.each(d, function (i, v) {
+                    row += "<option value=" + v.id + ">" + v.name + "</option>";
+                });
+                $("#ddlcity").html(row);                
+            })
+        })
+    })
+</script>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header text-white" style="background-color:#817398">
+                <h5 class="text-uppercase text-center">Regirtation Form</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmailId"></label>
+                        <input asp-for="EmailId" class="form-control" />
+                        <span asp-validation-for="EmailId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input type="password" asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label"></label>
+                        <select asp-for="Country" Id="ddlcountry"
+                                class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofCountry,"Id", "Name"))">
+                            <option value="0"> --select--</option>
+                        </select>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="State"></label>
+                        <select asp-for="State" id="ddlstate"
+                                class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofStates,"Id", "Name"))">
+                        </select>
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City"></label>
+                        <select asp-for="City" id="ddlcity"
+                                class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofCities,"Id", "Name"))">
+                        </select>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Role"></label>
+                        <input type="radio" asp-for="Role" value="Admin" />
+                        <label class="form-check-label">
+                            Admin
+                        </label>
+                        <input type="radio" asp-for="Role" value="Student" />
+                        <label class="form-check-label">
+                            Student
+                        </label>
+                        <br>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" asp-for="TAndC" class="form-control" style="width:40%" />
+                            <span asp-validation-for="TAndC" class="text-danger"></span>
+                            <br />
+                            <label class="form-check-label">
+                                Disclosure of information by the Edusys Pvt Ltd Company reserves the right at all times to disclose any information as necessary to satisfy any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part, in Company’s sole discretion
+                            </label>
+                        </div>                        
+                    </div>
+                    <input type="submit" value="Register User" class="btn btn-sm btn-success text-uppercase rounded-0" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

@@ -1,0 +1,33 @@
+﻿@model OnlineExaminationApps.Models.Assignedtest
+@{
+    ViewData["Title"] = "Assign Test";
+}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="text-uppercase text-center">Assign Test</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="AssignTest">
+                    <div class="form-group">
+                        <label>@ViewBag.ListofSimTest</label>                        
+                        <span asp-validation-for="TestId" class="text-danger"></span>
+                        <input hidden asp-for="TestId"/> 
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Student</label>
+                        <select asp-for="CustId"
+                                class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofCustomers,"CustId", "EmailId"))">
+                            <option value="0"> --select--</option>
+                        </select>
+                        <span asp-validation-for="CustId" class="text-danger"></span>
+                    </div>                    
+                    <input type="submit" value="Assign Test" class="btn btn-sm btn-success text-uppercase rounded-0" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  

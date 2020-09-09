@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OnlineExaminationApps.Models.SimTest>
+@{
+    ViewData["Title"] = "DashBoard";
+}
+<div>
+    <a  asp-controller="Admin" asp-action="CreateTest">Create Test</a>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" >S.No.</th>
+                <th>Test Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Add Questions</th>
+                <th>Assign</th>
+            </tr>
+        </thead>
+        <tbody>
+         @if (Model != null)
+          {
+            int i = 1;
+           foreach (var item in Model)
+           {
+              <tr>
+                <td scope="row" >@i</td>
+                <td scope="row" >@item.TestName</td>
+                <td scope="row"><a asp-route-id="@item.SimTestNumber" asp-controller="Admin" asp-action="EditTest">Edit</a></td>
+                <td scope="row"><a asp-route-id="@item.SimTestNumber" asp-controller="Admin" asp-action="DeleteTest">Delete</a></td>
+                <td scope="row"><a asp-route-id="@item.SimTestNumber" asp-controller="Admin" asp-action="AddQues">Add Questions</a></td>
+                <td scope="row"><a asp-route-id="@item.SimTestNumber" asp-controller="Admin" asp-action="AssignTest">Assign</a></td>
+               </tr>
+           }
+          }
+        </tbody>
+    </table>
+
+</div>
